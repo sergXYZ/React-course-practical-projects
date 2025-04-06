@@ -6,7 +6,7 @@ function Playlist() {
     <div className={styles.Playlist}>
       <input defaultValue={"New Playlist"} />
       {/* <!-- Add a TrackList component --> */}
-      <button className="Playlist-save">
+      <button className={styles["Playlist-save"]}>
         SAVE TO SPOTIFY
       </button>
     </div>
