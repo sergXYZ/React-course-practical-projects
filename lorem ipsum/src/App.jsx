@@ -1,18 +1,21 @@
 import { useState } from 'react'
 import data from './data'
+import { nanoid } from 'nanoid'
 
 const App = () => {
   const [count, setCount] = useState(1)
-  const [text, setText] = useState({ data })
+  const [text, setText] = useState([data])
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(e)
+    let amount = parseInt(count)
+    setText(data.slice(0, amount))
   }
+
   return (
-    <main>
-      <h2>Lorem Ipsum Starter</h2>;
-      <form onSubmit={handleSubmit}>
-        <label>paragraphs:</label>
+    <section className="section-center">
+      <h4>Lorem Ipsum Starter</h4>;
+      <form className="lorem-form" onSubmit={handleSubmit}>
+        <label htmlFor="amount">paragraphs:</label>
         <input
           type="number"
           id="amount"
@@ -25,9 +28,16 @@ const App = () => {
           max="8"
           step="1"
         ></input>
-        <button>Generate</button>
+        <button className="btn" type="submit">
+          Generate
+        </button>
       </form>
-    </main>
+      <article className="lorem-text">
+        {text.map((item, index) => {
+          return <p key={nanoid()}>{item}</p>
+        })}
+      </article>
+    </section>
   )
 }
 export default App
