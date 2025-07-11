@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
-const FOrm = () => {
+const FOrm = ({ addColor }) => {
   const [color, setColor] = useState('')
   const handleSubmit = (e) => {
     e.preventDefault()
+    addColor(color)
   }
   return (
-    <section onSubmit={handleSubmit}>
+    <section className="container">
       <h4>Color generator</h4>
-      <form>
+      <form onSubmit={handleSubmit} className="color-form">
         <input
           type="color"
           onChange={(e) => {
@@ -22,7 +23,9 @@ const FOrm = () => {
           }}
           placeholder="#f15025"
         ></input>
-        <button type="submit">Submit</button>
+        <button t className="btn" type="submit" style={{ background: color }}>
+          Submit
+        </button>
       </form>
     </section>
   )
