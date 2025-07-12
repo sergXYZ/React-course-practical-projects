@@ -1,7 +1,10 @@
 import { nanoid } from 'nanoid'
+import Form from './Form'
+import Items from './Items'
+import { useState } from 'react'
 
 const App = () => {
-  const [items, setItems] = useState(defaultList)
+  const [items, setItems] = useState([])
 
   const addItem = (itemName) => {
     const newItem = {
@@ -15,6 +18,16 @@ const App = () => {
 
   const removeItem = (itemId) => {
     const newItems = items.filter((item) => item.id !== itemId)
+    setItems(newItems)
+  }
+  const editItem = (itemId) => {
+    const newItems = items.map((item) => {
+      if (item.id === itemId) {
+        const newItem = { ...item, completed: !item.completed }
+        return newItem
+      }
+      return item
+    })
     setItems(newItems)
   }
   return (
